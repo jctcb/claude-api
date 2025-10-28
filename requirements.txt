@@ -1,0 +1,51 @@
+# Conners Group AI Assistant - Requirements
+# Python 3.12+ recommended
+
+# Core Framework
+Flask==3.1.0
+Flask-CORS==5.0.0
+Flask-WTF==1.2.2
+
+# Anthropic Claude API
+anthropic==0.42.0
+
+# Security
+bcrypt==4.2.1
+
+# Database
+# SQLite3 is included in Python standard library
+
+# Document Processing
+PyPDF2==3.0.1
+python-docx==1.1.2
+openpyxl==3.1.5
+markdown==3.7
+
+# PDF Generation
+reportlab==4.2.5
+
+# Google APIs (for email & calendar)
+google-auth==2.36.0
+google-auth-oauthlib==1.2.1
+google-auth-httplib2==0.2.0
+google-api-python-client==2.154.0
+
+# Email (SMTP/IMAP for Proton)
+# smtplib and imaplib are included in Python standard library
+
+# Environment Variables
+python-dotenv==1.0.1
+
+# HTTP Requests
+requests==2.32.3
+
+# Context Manager Dependencies
+# (No additional dependencies needed)
+
+# Logging
+# logging is included in Python standard library
+
+# Development
+# (optional, for development only)
+# pytest==8.3.4
+# black==24.10.0

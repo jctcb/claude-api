@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Conners Group AI Assistant</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-bg: #0f172a;
+            --secondary-bg: #1e293b;
+            --accent-color: #D4AF37;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --border-color: #334155;
+            --error-color: #dc2626;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--primary-bg) 0%, #1a1f35 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-container {
+            background: var(--secondary-bg);
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 450px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-color);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo i {
+            font-size: 48px;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        .logo h1 {
+            font-size: 28px;
+            color: var(--accent-color);
+            margin-bottom: 5px;
+        }
+
+        .logo p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .login-form {
+            margin-top: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .password-input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .form-group input[type="password"],
+        .form-group input[type="text"] {
+            width: 100%;
+            padding: 14px 45px 14px 16px;
+            background: var(--primary-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 15px;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 14px;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 16px;
+            padding: 5px;
+            transition: color 0.2s;
+        }
+
+        .toggle-password:hover {
+            color: var(--accent-color);
+        }
+
+        .error-message {
+            background: rgba(220, 38, 38, 0.1);
+            border: 1px solid var(--error-color);
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 20px;
+            color: var(--error-color);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .error-message i {
+            font-size: 16px;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--accent-color) 0%, #B8960D 100%);
+            color: var(--primary-bg);
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .login-btn:active {
+            transform: translateY(0);
+        }
+
+        .info-box {
+            margin-top: 25px;
+            padding: 16px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--accent-color);
+            border-radius: 8px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .info-box strong {
+            color: var(--accent-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .features-list {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+
+        .features-list h3 {
+            font-size: 14px;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .features-list ul {
+            list-style: none;
+        }
+
+        .features-list li {
+            padding: 8px 0;
+            font-size: 13px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .features-list li i {
+            color: var(--accent-color);
+            font-size: 12px;
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 30px 20px;
+            }
+
+            .logo h1 {
+                font-size: 24px;
+            }
+
+            .logo i {
+                font-size: 40px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .login-container {
+            animation: fadeInUp 0.5s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">
+            <i class="fas fa-brain"></i>
+            <h1>Conners AI</h1>
+            <p>Professional AI Assistant</p>
+        </div>
+
+        {% if error %}
+        <div class="error-message">
+            <i class="fas fa-exclamation-circle"></i>
+            <span>{{ error }}</span>
+        </div>
+        {% endif %}
+
+        <form class="login-form" method="POST" action="/login">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            
+            <div class="form-group">
+                <label for="password">
+                    <i class="fas fa-lock"></i> Password
+                </label>
+                <div class="password-input-wrapper">
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        placeholder="Enter your password"
+                        required
+                        autofocus
+                    >
+                    <button 
+                        type="button" 
+                        class="toggle-password" 
+                        onclick="togglePassword()"
+                        title="Show/Hide Password"
+                    >
+                        <i class="fas fa-eye" id="toggleIcon"></i>
+                    </button>
+                </div>
+            </div>
+
+            <button type="submit" class="login-btn">
+                <i class="fas fa-sign-in-alt"></i>
+                <span>Login to AI Assistant</span>
+            </button>
+        </form>
+
+        <div class="info-box">
+            <strong>Default Password:</strong>
+            ConnersGroup2025!
+            <br><br>
+            <small>Ã¢Å¡Â Ã¯Â¸Â Change this password after first login by adding APP_PASSWORD_HASH to your .env file</small>
+        </div>
+
+        <div class="features-list">
+            <h3>What's Inside</h3>
+            <ul>
+                <li><i class="fas fa-check-circle"></i> Enterprise-Grade Security</li>
+                <li><i class="fas fa-check-circle"></i> Universal Memory System</li>
+                <li><i class="fas fa-check-circle"></i> Multi-Company Support (30+)</li>
+                <li><i class="fas fa-check-circle"></i> File Upload & Analysis</li>
+                <li><i class="fas fa-check-circle"></i> Web Search Integration</li>
+                <li><i class="fas fa-check-circle"></i> Export Conversations</li>
+                <li><i class="fas fa-check-circle"></i> Mobile Responsive</li>
+                <li><i class="fas fa-check-circle"></i> Professional Logging</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const toggleIcon = document.getElementById('toggleIcon');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.classList.remove('fa-eye');
+                toggleIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.classList.remove('fa-eye-slash');
+                toggleIcon.classList.add('fa-eye');
+            }
+        }
+
+        // Allow Enter key to submit
+        document.getElementById('password').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.querySelector('.login-form').submit();
+            }
+        });
+
+        // Focus on password input on load
+        window.addEventListener('load', function() {
+            document.getElementById('password').focus();
+        });
+    </script>
+</body>
+</html>
